@@ -38,16 +38,16 @@
                 <span th:text="${job.name}"></span>
                 <br>
                 <span class="table-label" th:text="${#strings.toUpperCase('Employer: ')}"></span>
-                <span th:text="${job.employer}"></span>
+                <span><a th:href="@{/list/jobs(column=${'employer'},value=${job.employer})}" th:text="${job.employer}"></a></span>
                 <br>
                 <span class="table-label" th:text="${#strings.toUpperCase('Location: ')}"></span>
-                <span th:text="${job.location}"></span>
+                <span><a th:href="@{/list/jobs(column=${'location'},value=${job.location})}" th:text="${job.location}"></a></span>
                 <br>
                 <span class="table-label" th:text="${#strings.toUpperCase('Position Type: ')}"></span>
-                <span th:text="${job.positionType}"></span>
+                <span><a th:href="@{/list/jobs(column=${'positionType'},value=${job.positionType})}" th:text="${job.positionType}"></a></span>
                 <br>
                 <span class="table-label" th:text="${#strings.toUpperCase('Skill: ')}"></span>
-                <span th:text="${job.coreCompetency}"></span>
+                <span><a th:href="@{/list/jobs(column=${'coreCompetency'},value=${job.coreCompetency})}" th:text="${job.coreCompetency}"></a></span>
             </td>
         </tr>
     </table>
