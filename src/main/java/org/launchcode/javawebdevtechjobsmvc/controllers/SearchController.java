@@ -24,14 +24,17 @@ public class SearchController extends TechJobsController {
     }
 
     @RequestMapping(value = "results")
-    public String searchResults(Model model,
+    public String displaySearchResults(Model model,
                                 @RequestParam(required = false) String searchType,
                                 @RequestParam(required = false) String searchTerm) {
         ArrayList<Job> jobs;
 
-        if (searchTerm == null || searchType == null || searchTerm.equals("all")){
-            jobs = JobData.findAll();
-            model.addAttribute("title", "All Jobs");
+        if (searchTerm == null) {
+            jobs = JobData.findByColumnAndValue("all", "all");
+            model.addAttribute("title", "Jobs with: " + columnChoices.get(searchType));
+        } else if (searchType == null) {
+            jobs = JobData.findByColumnAndValue("all", searchTerm);
+            model.addAttribute("title", "Jobs with: " + searchTerm);
         } else {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
             model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);
